@@ -126,3 +126,10 @@ if (browser.contextualIdentities === undefined) {
         });
     })();
 }
+
+browser.runtime.onInstalled.addListener(async() => {
+    let browserInfo = await browser.runtime.getBrowserInfo();
+    if (browserInfo.name !== "Firefox" || browserInfo.vendor !== "Mozilla") {
+        browser.tabs.create({ url: browser.runtime.getURL("not_supported_browsers.html") });
+    }
+})
