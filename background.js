@@ -2,14 +2,18 @@ var initing = false;
 var private_tab_created = false;
 
 function DebugLog(a, b) {
-    if (true || isDebug) {
-        let c = {
-            "message": a,
-            "date": new Date().toString(),
-            "data": b
+    browser.storage.get({
+        isDebug: false
+    }, function (options) {
+        if (options.isDebug) {
+            let c = {
+                "message": a,
+                "date": new Date().toString(),
+                "data": b
+            }
+            console.log(c);
         }
-        console.log(c);
-    }
+    })
 }
 
 async function init_container(recreate) {
@@ -67,7 +71,7 @@ async function init_container(recreate) {
 if (browser.contextualIdentities === undefined) {
     browser.tabs.create({ url: browser.runtime.getURL("unable_container.html") });
 } else {
-    (async() => {
+    (async () => {
         private_tab_created = true;
         await init_container(true);
         browser.menus.create({
@@ -80,7 +84,7 @@ if (browser.contextualIdentities === undefined) {
             title: "Open Link in Private Tab",
             contexts: ["link"]
         });
-        browser.menus.onClicked.addListener(async(e) => {
+        browser.menus.onClicked.addListener(async (e) => {
             if (initing) { return }
             DebugLog("menus_clicked", null);
             let contextId = await init_container(false);
@@ -97,7 +101,7 @@ if (browser.contextualIdentities === undefined) {
                 url: url
             });
         })
-        browser.browserAction.onClicked.addListener(async() => {
+        browser.browserAction.onClicked.addListener(async () => {
             if (initing) { return }
             DebugLog("browser_action_clicked", null);
             let contextId = await init_container(false);
@@ -105,14 +109,14 @@ if (browser.contextualIdentities === undefined) {
                 cookieStoreId: contextId
             });
         });
-        browser.tabs.onCreated.addListener(async(tab) => {
+        browser.tabs.onCreated.addListener(async (tab) => {
             let contextId = await init_container(false);
             if (contextId === tab.cookieStoreId) {
                 DebugLog("private_tab_opened", tab);
                 private_tab_created = true;
             }
         });
-        browser.tabs.onRemoved.addListener(async() => {
+        browser.tabs.onRemoved.addListener(async () => {
             if (initing) { return }
             DebugLog("tab_closed", null);
             let contextId = await init_container(false);
@@ -127,7 +131,7 @@ if (browser.contextualIdentities === undefined) {
     })();
 }
 
-browser.runtime.onInstalled.addListener(async() => {
+browser.runtime.onInstalled.addListener(async () => {
     let browserInfo = await browser.runtime.getBrowserInfo();
     if (browserInfo.name !== "Firefox" || browserInfo.vendor !== "Mozilla") {
         browser.tabs.create({ url: browser.runtime.getURL("not_supported_browsers.html") });
