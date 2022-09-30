@@ -8,6 +8,10 @@
             "strict_min_version": "102.0"
         }
     },
+    "icons": {
+        "48": "icons/icon-48x48.png",
+        "96": "icons/icon-96x96.png"
+    },
     "permissions": [
         "contextualIdentities",
         "cookies",
@@ -16,6 +20,10 @@
         "tabs"
     ],
     "browser_action": {
+        "default_icon": {
+            "48": "icons/icon-newtab-48x48.png",
+            "96": "icons/icon-newtab-96x96.png"
+        }
     },
     "background": {
         "scripts": [
