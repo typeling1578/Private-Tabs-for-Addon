@@ -2,7 +2,7 @@ var initing = false;
 var private_tab_created = false;
 
 function DebugLog(a, b) {
-    browser.storage.get({
+    browser.storage.local.get({
         isDebug: false
     }, function (options) {
         if (options.isDebug) {
@@ -13,7 +13,7 @@ function DebugLog(a, b) {
             }
             console.log(c);
         }
-    })
+    });
 }
 
 async function init_container(recreate) {
