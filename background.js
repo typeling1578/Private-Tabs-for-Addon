@@ -167,12 +167,14 @@ if (browser.contextualIdentities === undefined) {
 const ALLOW_NAME_LIST = [
     "Firefox",
     "Floorp",
+    "LibreWolf",
     "Thunderfox",
 ]
 
 const ALLOW_VENDER_LIST = [
     "Mozilla",
     "Ablaze",
+    "LibreWolf",
     "typeling1578",
 ];
 
