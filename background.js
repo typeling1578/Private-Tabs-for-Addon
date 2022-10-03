@@ -164,9 +164,21 @@ if (browser.contextualIdentities === undefined) {
     })();
 }
 
+const ALLOW_NAME_LIST = [
+    "Firefox",
+    "Floorp",
+    "Thunderfox",
+]
+
+const ALLOW_VENDER_LIST = [
+    "Mozilla",
+    "Ablaze",
+    "typeling1578",
+];
+
 browser.runtime.onInstalled.addListener(async () => {
     let browserInfo = await browser.runtime.getBrowserInfo();
-    if (browserInfo.name !== "Firefox" || browserInfo.vendor !== "Mozilla") {
+    if (!ALLOW_NAME_LIST.includes(browserInfo.name) || !ALLOW_VENDER_LIST.includes(browserInfo.vendor)) {
         browser.tabs.create({ url: browser.runtime.getURL("not_supported_browsers.html") });
     }
 })
