@@ -17,7 +17,9 @@
         "cookies",
         "menus",
         "storage",
-        "tabs"
+        "tabs",
+        "webNavigation",
+        "history"
     ],
     "browser_action": {
         "default_icon": {

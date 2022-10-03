@@ -68,6 +68,35 @@ async function init_container(recreate) {
     return prefs.contextId;
 }
 
+async function deleteHistory(details) {
+    if (details.frameId !== 0) {
+        return;
+    }
+    let tab = await browser.tabs.get(details.tabId);
+    let prefs = await browser.storage.local.get({
+        contextId: null
+    });
+    if (tab.cookieStoreId !== prefs.contextId) {
+        return;
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    /*
+    let visits = await browser.history.getVisits({url: details.url});
+    let visit = visits[0];
+    await browser.history.deleteRange({
+        startTime: visit.visitTime,
+        endTime: visit.visitTime + 1
+    });
+    */
+
+    await browser.history.deleteRange({
+        startTime: details.timeStamp - 100,
+        endTime: details.timeStamp + 100
+    });
+}
+
 if (browser.contextualIdentities === undefined) {
     browser.tabs.create({ url: browser.runtime.getURL("unable_container.html") });
 } else {
@@ -128,6 +157,10 @@ if (browser.contextualIdentities === undefined) {
                 await init_container(true);
             }
         });
+        browser.webNavigation.onBeforeNavigate.addListener(deleteHistory);
+        browser.webNavigation.onCommitted.addListener(deleteHistory);
+        browser.webNavigation.onHistoryStateUpdated.addListener(deleteHistory);
+        browser.webNavigation.onReferenceFragmentUpdated.addListener(deleteHistory);
     })();
 }
 
