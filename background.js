@@ -163,24 +163,3 @@ if (browser.contextualIdentities === undefined) {
         browser.webNavigation.onReferenceFragmentUpdated.addListener(deleteHistory);
     })();
 }
-
-const ALLOW_NAME_LIST = [
-    "Firefox",
-    "Floorp",
-    "LibreWolf",
-    "Thunderfox",
-]
-
-const ALLOW_VENDER_LIST = [
-    "Mozilla",
-    "Ablaze",
-    "LibreWolf",
-    "typeling1578",
-];
-
-browser.runtime.onInstalled.addListener(async () => {
-    let browserInfo = await browser.runtime.getBrowserInfo();
-    if (!ALLOW_NAME_LIST.includes(browserInfo.name) || !ALLOW_VENDER_LIST.includes(browserInfo.vendor)) {
-        browser.tabs.create({ url: browser.runtime.getURL("not_supported_browsers.html") });
-    }
-})
