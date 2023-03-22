@@ -94,19 +94,27 @@ async function deleteHistory(details) {
         title: "Open Link in Private Tab",
         contexts: ["link"]
     });
+    browser.menus.create({
+        id: "close-all-private-tabs",
+        title: "Close all private tabs",
+        contexts: ["browser_action"]
+    });
     browser.menus.onClicked.addListener(async (e) => {
         if (initializing) return;
         await updateContainerState();
-        let url;
         if (e.menuItemId === "open-link-in-private-tab") {
-            url = e.linkUrl;
+            browser.tabs.create({
+                cookieStoreId: privatedContainerId,
+                url: e.linkUrl,
+            });
         } else if (e.menuItemId === "open-in-private-tab") {
-            url = e.pageUrl;
+            browser.tabs.create({
+                cookieStoreId: privatedContainerId,
+                url: e.pageUrl,
+            });
+        } else if (e.menuItemId === "close-all-private-tabs") {
+            browser.runtime.reload();
         }
-        browser.tabs.create({
-            cookieStoreId: privatedContainerId,
-            url: url,
-        });
     });
     browser.browserAction.onClicked.addListener(async () => {
         if (initializing) return;
