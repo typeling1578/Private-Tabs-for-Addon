@@ -7,6 +7,9 @@ let initializing = false;
 
 async function updateContainerState() {
     initializing = true;
+    await browser.browserAction.setIcon({
+        path: "icons/tab-loading.png"
+    });
     let prefs = await browser.storage.local.get({
         contextId: null
     });
@@ -53,6 +56,9 @@ async function updateContainerState() {
     privatedContainerId = prefs.contextId;
     started = true;
     initializing = false;
+    await browser.browserAction.setIcon({
+        path: "icons/icon-newtab-96x96.png"
+    });
 }
 
 async function deleteHistory(details) {
