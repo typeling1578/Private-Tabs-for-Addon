@@ -35,6 +35,11 @@ async function updateContainerState() {
             try {
                 await browser.contextualIdentities.remove(prefs.contextId);
             } catch (e) { console.error(e) }
+            if (privatedContainerId) {
+                try {
+                    await browser.contextualIdentities.remove(privatedContainerId);
+                } catch (e) { console.error(e) }
+            }
         }
         try {
             await browser.contextualIdentities.get(prefs.contextId);
@@ -127,10 +132,11 @@ async function deleteHistory(details) {
     browser.tabs.onCreated.addListener(async (tab) => {
         if (privatedContainerId === tab.cookieStoreId) {
             privatedTabs.push(tab);
+            await updateContainerState();
         }
-        await updateContainerState();
     });
     browser.tabs.onRemoved.addListener(async (tabId) => {
+        if (privatedTabs.filter(privatedTab => privatedTab.id === tabId).length === 0) return;
         privatedTabs = privatedTabs.filter(privatedTab => privatedTab.id !== tabId);
         if (privatedTabs.length === 0 && started) {
             await updateContainerState();
