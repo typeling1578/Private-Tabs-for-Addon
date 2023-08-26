@@ -1,0 +1,8 @@
+{
+    "alerts_unable_container_title": {
+        "message": "browser.contextualIdentities not available - Private Tabs"
+    },
+    "alerts_unable_container_description": {
+        "message": "Check that the `privacy.userContext.enabled` pref is set to true, and reload the add-on."
+    }
+}

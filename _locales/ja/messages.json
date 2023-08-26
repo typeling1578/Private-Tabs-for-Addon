@@ -1,0 +1,8 @@
+{
+    "alerts_unable_container_title": {
+        "message": "browser.contextualIdentities が利用できません - Private Tabs"
+    },
+    "alerts_unable_container_description": {
+        "message": "`privacy.userContext.enabled`がtrueに設定されていることを確認し、アドオンを再読み込みしてください。"
+    }
+}
