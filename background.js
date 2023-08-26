@@ -91,17 +91,17 @@ async function deleteHistory(details) {
 
     browser.menus.create({
         id: "open-in-private-tab",
-        title: "Open in Private Tab",
+        title: browser.i18n.getMessage("menus_open-in-private-tab"),
         contexts: ["tab"]
     });
     browser.menus.create({
         id: "open-link-in-private-tab",
-        title: "Open Link in Private Tab",
+        title: browser.i18n.getMessage("menus_open-link-in-private-tab"),
         contexts: ["link"]
     });
     browser.menus.create({
         id: "close-all-private-tabs",
-        title: "Close all private tabs",
+        title: browser.i18n.getMessage("menus_close-all-private-tabs"),
         contexts: ["browser_action"]
     });
     browser.menus.onClicked.addListener(async (e) => {

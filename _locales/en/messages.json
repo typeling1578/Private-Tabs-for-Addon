@@ -1,4 +1,13 @@
 {
+    "menus_open-in-private-tab": {
+        "message": "Open in Private Tab"
+    },
+    "menus_open-link-in-private-tab": {
+        "message": "Open Link in Private Tab"
+    },
+    "menus_close-all-private-tabs": {
+        "message": "Close all private tabs"
+    },
     "alerts_unable_container_title": {
         "message": "browser.contextualIdentities not available - Private Tabs"
     },

@@ -1,4 +1,13 @@
 {
+    "menus_open-in-private-tab": {
+        "message": "プライベートタブで開く"
+    },
+    "menus_open-link-in-private-tab": {
+        "message": "リンクを新しいプライベートタブで開く"
+    },
+    "menus_close-all-private-tabs": {
+        "message": "すべてのプライベートタブを閉じる"
+    },
     "alerts_unable_container_title": {
         "message": "browser.contextualIdentities が利用できません - Private Tabs"
     },
