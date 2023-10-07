@@ -15,7 +15,7 @@ async function updateContainerState() {
     });
     if (!prefs.contextId) {
         let contextualIdentity = await browser.contextualIdentities.create({
-            name: "Private",
+            name: browser.i18n.getMessage("tab_context_name"),
             color: "purple",
             icon: "fingerprint"
         });
@@ -46,7 +46,7 @@ async function updateContainerState() {
         } catch (e) {
             console.error(e);
             let contextualIdentity = await browser.contextualIdentities.create({
-                name: "Private",
+                name: browser.i18n.getMessage("tab_context_name"),
                 color: "purple",
                 icon: "fingerprint"
             });

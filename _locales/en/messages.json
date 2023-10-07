@@ -1,4 +1,7 @@
 {
+    "tab_context_name": {
+        "message": "Private"
+    },
     "menus_open-in-private-tab": {
         "message": "Open in Private Tab"
     },
