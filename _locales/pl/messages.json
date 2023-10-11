@@ -1,4 +1,7 @@
 {
+    "tab_context_name": {
+        "message": "Prywatna"
+    },
     "menus_open-in-private-tab": {
         "message": "Otwórz w Prywatnej Karcie"
     },
