@@ -1,0 +1,20 @@
+{
+    "tab_context_name": {
+        "message": "Privado"
+    },
+    "menus_open-in-private-tab": {
+        "message": "Abrir en Pestaña Privada"
+    },
+    "menus_open-link-in-private-tab": {
+        "message": "Abrir Link en Pestaña Privada"
+    },
+    "menus_close-all-private-tabs": {
+        "message": "Cerrar todas las pestañas privadas"
+    },
+    "alerts_unable_container_title": {
+        "message": "browser.contextualIdentities no disponible - Pestañas Privadas"
+    },
+    "alerts_unable_container_description": {
+        "message": "Asegúrate de que el valor de la opción `privacy.userContext.enabled` sea `true`, y recarga la extensión."
+    }
+}

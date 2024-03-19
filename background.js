@@ -148,3 +148,7 @@ async function deleteHistory(details) {
     browser.webNavigation.onHistoryStateUpdated.addListener(deleteHistory);
     browser.webNavigation.onReferenceFragmentUpdated.addListener(deleteHistory);
 })();
+
+// Prevent the add-on from being reloaded in the current session due to an update.
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onUpdateAvailable
+browser.runtime.onUpdateAvailable.addListener(() => {});

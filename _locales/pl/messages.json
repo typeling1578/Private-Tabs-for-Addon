@@ -15,6 +15,6 @@
         "message": "browser.contextualIdentities niedostępne - Prywatne Karty"
     },
     "alerts_unable_container_description": {
-        "message": "Sprawdź, czy `privacy.userContext.enabled` jest ustawione na "true" i przeładuj rozszerzenie."
+        "message": "Sprawdź, czy `privacy.userContext.enabled` jest ustawione na \"true\" i przeładuj rozszerzenie."
     }
 }
